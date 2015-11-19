@@ -20,14 +20,16 @@ try:
 	content = response.read().decode('utf-8')
 	print content
 #	pattern = re.compile('<div.*?author clearfix">.*?<h2>(.*?)</h2>.*?class="content">(.*?)<!--(.*?)-->'+'</div>(.*?)<div class="stats.*?number">(.*?)</i>', re.S)
-	pattern = re.compile('<div.*?author.*?<a.*?<img.*?</a><a.*?<h2>(.*?)</h2>.*?</div>.*?<div.*?content">(.*?)<!--(.*?)-->.*?</div>(.*?)<div class="stats.*?number">(.*?)</i>', re.S)
+#	pattern = re.compile('<div.*?author.*?<a.*?<img.*?</a><a.*?<h2>(.*?)</h2>.*?</div>.*?<div.*?content">(.*?)<!--(.*?)-->.*?</div>(.*?)<div class="stats.*?number">(.*?)</i>', re.S)
 #	pattern = re.compile('<div.*?author.*?<a.*?<img.*?</a><a.*?</h2>(.*?)</h2>', re.S)
+	pattern = re.compile('<div.*?author.*?<h2>(.*?)</h2>.*?<div.*?content">(.*?)<!--(.*?)-->' , re.S)
+
 	print 're.compile end'
 	items = re.findall(pattern, content)
 	print items
 	print 're.findall end'
 	for item in items:
-		print item[0]
+		print u"author:%s\t date: %s \ncontent: %s" %(item[0], item[2], item[1])
 #		hasImage = re.search('img', item[3])
 #		if not hasImage:
 #			print item[0],item[1],item[2],item[4]	
